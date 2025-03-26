@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:27:38 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 10:46:20 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 14:48:32 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 t_data	*data_init_3(t_data *data)
 {
+	data->x_min = -2.0;
+	data->x_max = 2.0;
+	data->y_min = -2.0;
+	data->y_max = 2.0;
+	data->x_step = ((data->x_max - data->x_min) / WIDTH);
+	data->y_step = ((data->y_max - data->y_min) / HEIGHT);
+	data->img = NULL;
 	data->view = 's';
+	data->sierp = SIERPINSKI;
 	data->dist = -1;
 	data->max_iterations = ITERATIONS;
 	data->color_0 = 0;
@@ -26,14 +34,10 @@ t_data	*data_init_3(t_data *data)
 	return (data);
 }
 
-t_data	*data_init_2(t_data *data)
+t_data	*data_init_2(t_data *data, char **av)
 {
 	if (!data)
 		return (NULL);
-	data->x_min = -2.0;
-	data->x_max = 2.0;
-	data->y_min = -2.0;
-	data->y_max = 2.0;
 	data->c_r = 0.0;
 	data->c_i = 0.0;
 	data->z.r = 0.0;
@@ -42,20 +46,22 @@ t_data	*data_init_2(t_data *data)
 	data->y_c = 0;
 	data->x = 0.0;
 	data->y = 0.0;
-	data->x_step = ((data->x_max - data->x_min) / WIDTH);
-	data->y_step = ((data->x_max - data->x_min) / HEIGHT);
-	data->img = NULL;
 	data->addr = NULL;
+	data->max_zoom = DBL_MAX;
+	data->min_zoom = DBL_MIN;
+	if (ft_strcmp(av[1], "j") == 0)
+		data->fractal = 'j';
+	else if (ft_strcmp(av[1], "m") == 0)
+		data->fractal = 'm';
+	else if (ft_strcmp(av[1], "s") == 0)
+	{
+		data->fractal = 's';
+		data->max_zoom = 2871.807116;
+	}
 	return (data_init_3(data));
 }
-/*
-	quando estivermos para fazer o bonus e formos generalizar
-	o tamanho da janela basta criar duas vars para win_h e
-	win_w e dps usar as mesmas para calcular step_x e step_y 
-	de resto creio que ja foi bem feito o setup
-*/
 
-t_data	*data_init(void)
+t_data	*data_init(char **av)
 {
 	t_data	*data;
 
@@ -75,5 +81,5 @@ t_data	*data_init(void)
 		free(data);
 		exit(1);
 	}
-	return (data_init_2(data));
+	return (data_init_2(data, av));
 }	

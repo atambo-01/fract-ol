@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:44:13 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 09:57:37 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 14:50:18 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,42 @@ void	draw_if(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
 
+void    key_hook_3(int keycode, t_data *data)
+{
+    if (keycode == '1' && data->sierp >= 0)
+    {
+        data->sierp--;
+    }
+    if (keycode == '2')
+    {
+        data->sierp++;;
+    }
+}
+
 void	key_hook_2(int keycode, t_data *data)
 {
 	double	change;
 
-	change = 0.0001 * data->x_max * data->color_2 * sin(data->x_max);
-	if (keycode == SPACE)
+	change = 0.0001 * 2 * data->color_2 * sin(2);
+	if (keycode == ' ')
 	{
 		data->color_1 += change;
 		data->color_2 += change;
 	}
-	if (keycode == S)
+	if (keycode == 'a')
 	{
 		data->view = 's';
 	}
-	if (keycode == L)
+	if (keycode == 's')
 	{
 		data->view = 'l';
 	}
-	if (keycode == D)
+	if (keycode == 'd')
 	{
 		data->dist = data->dist * -1;
 	}
+	else
+		key_hook_3(keycode, data);
 }
 
 int	key_hook(int keycode, t_data *data)
@@ -75,10 +89,9 @@ int	key_hook(int keycode, t_data *data)
 int	mouse_hook(int button, int x, int y, t_data *data)
 {
 	double zoom_factor;
-	ft_printf("\tmouse_ = %d\n\tmouse_y = %d\n", x, y);
 	if (button == 4 && x >= 0 && y >= 0)
 	{
-		if (data->x_max - data->x_min <= DBL_MIN)
+		if ((data->x_max - data->x_min) <= data->min_zoom)
 			ft_put_error("Max zoom lvl\n");
 		else
 		{
@@ -88,7 +101,7 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 	}
 	else if (button == 5 && y >= 0 && x >= 0)
 	{				
-		if (data->x_max - data->x_min >= DBL_MAX)
+		if ((data->x_max - data->x_min) >= data->max_zoom)
 			ft_put_error("Min zoom lvl\n");
 		else
 		{

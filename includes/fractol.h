@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 16:55:36 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 11:12:08 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 15:18:47 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,34 @@
 # include <math.h>
 
 # define ESC		65307
-# define SPACE		32
 # define UP			65363
 # define DOWN		65361
 # define LEFT		65362
 # define RIGHT		65364
-# define S			115
-# define L			108
-# define D			100
 # define DBL_MAX	1.7976931348623157e+308
 # define DBL_MIN	2.2250738585072014e-308
-# define WIDTH		1000
-# define HEIGHT		1000
+# define WIDTH		1080
+# define HEIGHT		1080
 # define ITERATIONS	100
+# define SIERPINSKI	3
 
 typedef struct s_cmplx
 {
 	double	r;
 	double	i;
 }	t_cmplx;
+
+typedef struct s_sierp
+{
+    double v0x; // Top vertex x
+    double v0y; // Top vertex y
+    double v1x; // Bottom left x
+    double v1y; // Bottom left y
+    double v2x; // Bottom right x
+    double v2y; // Bottom right y
+    double px;  // Current point x
+    double py;  // Current point y
+} t_sierp;
 
 typedef struct s_data
 {
@@ -55,6 +64,8 @@ typedef struct s_data
 	double	x_max;
 	double	y_min;
 	double	y_max;
+	double	max_zoom;
+	double	min_zoom;
 	double	c_r;
 	double	c_i;
 	double	x;
@@ -70,6 +81,8 @@ typedef struct s_data
 	int		max_iterations;
 	char	view;
 	int		dist;
+	int		sierp;
+	t_sierp	s;
 }	t_data;
 
 //check_inputs.c
@@ -95,8 +108,8 @@ double	ft_atoi_f_2(const char *str, double fraction, double result);
 double	ft_atoi_f(const char *str);
 //inits.c
 t_data	*data_init_3(t_data *data);
-t_data	*data_init_2(t_data *data);
-t_data	*data_init(void);
+t_data	*data_init_2(t_data *data, char **av);
+t_data	*data_init(char **av);
 //inputs.c
 void	draw_if(t_data *data);
 void	key_hook_2(int keycode, t_data *data);
@@ -111,5 +124,9 @@ void	pixel_put_img(t_data *data, int x, int y, int color);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_put_error(char *s);
 int		ft_strlen(char const *str);
+//sierpinski.c
+static void init_sierpinski(t_data *data, double x, double y);
+static void update_sierpinski_point(t_data *data);
+void draw_sierpinski(t_data *data, double x, double y);
 
 #endif
