@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:27:38 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 01:05:35 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 10:46:20 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_data	*data_init_3(t_data *data)
 {
 	data->view = 's';
 	data->dist = -1;
-	data->max_iterations = 100;
+	data->max_iterations = ITERATIONS;
 	data->color_0 = 0;
 	data->color_1 = 0x0f548c;
 	data->color_2 = 0xf2cf1d;
@@ -42,7 +42,8 @@ t_data	*data_init_2(t_data *data)
 	data->y_c = 0;
 	data->x = 0.0;
 	data->y = 0.0;
-	data->step = ((data->x_max - data->x_min) / 1000);
+	data->x_step = ((data->x_max - data->x_min) / WIDTH);
+	data->y_step = ((data->x_max - data->x_min) / HEIGHT);
 	data->img = NULL;
 	data->addr = NULL;
 	return (data_init_3(data));

@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:51:26 by atambo            #+#    #+#             */
-/*   Updated: 2024/09/25 13:27:36 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 11:16:44 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	ft_is_double(const char *str)
 
 int	check_input_2(char **av)
 {
+	
 	if (ft_strcmp(av[1], "j") != 0)
 	{
 		ft_put_error("Error, invalid parameters.\n");
@@ -89,7 +90,7 @@ int	check_input(int ac, char **av)
 		print_valid_params();
 		return (-1);
 	}
-	else if (ac == 2 && ft_strcmp(av[1], "m") != 0)
+	else if (ac == 2 && (ft_strcmp(av[1], "m") != 0 && ft_strcmp(av[1], "s") != 0))
 	{
 		ft_put_error("Error, invalid parameters.\n");
 		print_valid_params();

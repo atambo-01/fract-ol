@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:34:24 by atambo            #+#    #+#             */
-/*   Updated: 2024/09/28 15:34:25 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 11:37:43 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	main(int ac, char **av)
 			data->fractal = 'j';
 		else if (ft_strcmp(av[1], "m") == 0)
 			data->fractal = 'm';
+		else if (ft_strcmp(av[1], "s") == 0)
+			data->fractal = 's'; 
 		draw_fractal(data, data->x, data->y);
 		ft_loop(data);
 	}

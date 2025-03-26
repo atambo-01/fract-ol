@@ -6,7 +6,7 @@
 #    By: atambo <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 18:48:12 by atambo            #+#    #+#              #
-#    Updated: 2025/03/26 10:11:57 by atambo           ###   ########.fr        #
+#    Updated: 2025/03/26 11:46:28 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SOURCES		=	src/main.c\
 
 NAME		=	fractol
 CC			=	cc
-CFLAGS		=	-g -Wall -Wextra -Werror
+CFLAGS		=	-g #-Wall -Wextra -Werror
 OBJS		=	$(SOURCES:.c=.o)
 INCLUDES	=	-Iincludes
 

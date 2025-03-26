@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:16:05 by atambo            #+#    #+#             */
-/*   Updated: 2024/09/29 11:16:06 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 11:18:57 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	get_color_component(int base_color, int next_color, double ratio, int i)
 	return ((int)(base + ratio * (next - base)));
 }
 
-int	get_color_2(int out_color, int int_color,
-	int iterations, int max_iterations)
+int	get_color_2(int out_color, int int_color,int iterations, int max_iterations)
 {
 	double	ratio;
 	int		red;

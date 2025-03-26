@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 16:55:36 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 10:08:10 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 11:12:08 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define DBL_MIN	2.2250738585072014e-308
 # define WIDTH		1000
 # define HEIGHT		1000
+# define ITERATIONS	100
 
 typedef struct s_cmplx
 {
@@ -60,7 +61,8 @@ typedef struct s_data
 	double	y;
 	int		x_c;
 	int		y_c;
-	double	step;
+	double	x_step;
+	double	y_step;
 	int		fractal;
 	int		color_0;
 	int		color_1;
