@@ -6,11 +6,20 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:17:13 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 10:36:01 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 22:20:59 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+double	zoom_limit(t_data *data)
+{
+	if (data->x_max - data->x_min >= data->max_zoom)
+		return (1.0);
+	if (data->x_max - data->x_min <= data->min_zoom)
+		return (-1.0);
+	return (0.0);
+}
 
 void	xy_lim_add(t_data *data, double dx, double dy)
 {
@@ -20,23 +29,21 @@ void	xy_lim_add(t_data *data, double dx, double dy)
 	data->y_max += dy;
 }
 
-
-void xy_lim_zoom(t_data *data, double zoom_factor, int mouse_x, int mouse_y)
+void	xy_lim_zoom(t_data *data, double zoom_factor, int mouse_x, int mouse_y)
 {
-    double x_range = data->x_max - data->x_min;
-    double y_range = data->y_max - data->y_min;
+	double	x_adj;
+	double	y_adj;
+	double	x_prop;
+	double	y_prop;
 
-    // Calculate mouse position as a proportion of the screen (0.0 to 1.0)
-    double x_proportion = (double)mouse_x / WIDTH;
-    double y_proportion = (double)mouse_y / HEIGHT;
-
-    double x_adjustment = x_range * (1.0 - zoom_factor);
-    double y_adjustment = y_range * (1.0 - zoom_factor);
-
-    data->x_min += x_adjustment * x_proportion;
-    data->x_max -= x_adjustment * (1.0 - x_proportion);
-    data->y_min += y_adjustment * y_proportion;
-    data->y_max -= y_adjustment * (1.0 - y_proportion);
+	x_prop = (double)mouse_x / WIDTH;
+	y_prop = (double)mouse_y / HEIGHT;
+	x_adj = (data->x_max - data->x_min) * (1.0 - zoom_factor);
+	y_adj = (data->y_max - data->y_min) * (1.0 - zoom_factor);
+	data->x_min += x_adj * x_prop;
+	data->x_max -= x_adj * (1.0 - x_prop);
+	data->y_min += y_adj * y_prop;
+	data->y_max -= y_adj * (1.0 - y_prop);
 }
 
 int	close_window(t_data *data)

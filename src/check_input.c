@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:51:26 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 13:45:19 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 23:04:21 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@ void	print_valid_params(void)
 
 	valid_params = ""
 		"Available options:\n"
-		"--------------------------------------------------------------------\n"
-		"\t./fractol m\n"
-		"\t./fractol j <complex_real> <complex_imaginary>\n"
+		"-----------------------------------------------------------------\n"
+		"\t./fractol s (sierpinski triangle)\n"
+		"\t./fractol m (mandelbrot set)\n"
+		"\t./fractol j (julia set) <complex_real> <complex_imaginary>\n"
 		"\t./fractol j -0.761682243 0.088785046\n"
-		"--------------------------------------------------------------------\n"
-		"OBS - for julia the modulus of point should be inside a radius of 4\n"
-		"It must fit in a double meaning > than 1E-10 = (0.000 000 000 001)\n"
-		"--------------------------------------------------------------------\n"
-		"for zooming and 's'(simple) 'l'(layers) ('d')(distorted) for visuals\n"
-		"--------------------------------------------------------------------\n";
+		"-----------------------------------------------------------------\n"
+		"OBS - for julia the modulus of point should be inside a r of 4\n"
+		"It must fit in a double or > than 1E-10 = (0.000 000 000 001)\n"
+		"-----------------------------------------------------------------\n"
+		"Visuals 's'(simple) 'l'(layers) ('d')(distorted) for visuals\n"
+		"-----------------------------------------------------------------\n";
 	ft_put_error(valid_params);
 }
 
@@ -66,7 +67,6 @@ int	ft_is_double(const char *str)
 
 int	check_input_2(char **av)
 {
-	
 	if (ft_strcmp(av[1], "j") != 0)
 	{
 		ft_put_error("Error, invalid parameters.\n");
@@ -90,7 +90,8 @@ int	check_input(int ac, char **av)
 		print_valid_params();
 		return (-1);
 	}
-	else if (ac == 2 && (ft_strcmp(av[1], "m") != 0 && ft_strcmp(av[1], "s") != 0))
+	else if (ac == 2 && (ft_strcmp(av[1], "m") != 0
+			&& ft_strcmp(av[1], "s") != 0))
 	{
 		ft_put_error("Error, invalid parameters.\n");
 		print_valid_params();

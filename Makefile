@@ -6,7 +6,7 @@
 #    By: atambo <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 18:48:12 by atambo            #+#    #+#              #
-#    Updated: 2025/03/26 14:52:20 by atambo           ###   ########.fr        #
+#    Updated: 2025/03/26 21:07:07 by atambo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SOURCES		=	src/main.c\
 				src/inputs_utils.c\
 				src/utils.c\
 				src/sierpinski.c\
+				src/sierpinski_utils.c\
 
 
 NAME		=	fractol

@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:34:24 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 14:49:39 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 22:01:38 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	main(int ac, char **av)
 	c.i = 0.0;
 	set = check_input(ac, av);
 	if (set == 1 || set == 2)
-	{	
+	{
 		if (set == 2)
 		{
 			c.r = ft_atoi_f(av[2]);
 			c.i = ft_atoi_f(av[3]);
-		}	
+		}
 		data = data_init(av);
 		data->c = c;
 		draw_fractal(data, data->x, data->y);

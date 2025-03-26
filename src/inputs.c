@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:44:13 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 18:00:40 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 22:24:37 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	draw_if(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
 
-void    key_hook_3(int keycode, t_data *data)
+void	key_hook_3(int keycode, t_data *data)
 {
-    if (keycode == '1' && data->sierp >= 0)
-    {
-        data->sierp--;
-    }
-    if (keycode == '2')
-    {
-        data->sierp++;;
-    }
+	if (keycode == '1' && data->sierp > 0)
+	{
+		data->sierp--;
+	}
+	if (keycode == '2' && data->sierp <= 45)
+	{
+		data->sierp++;
+	}
 }
 
 void	key_hook_2(int keycode, t_data *data)
@@ -64,6 +64,7 @@ int	key_hook(int keycode, t_data *data)
 {
 	double	dxy;
 
+	printf("level %d\n", data->sierp);
 	dxy = (data->x_max - data->x_min) * 0.05;
 	if ((keycode == DOWN) || (keycode == UP))
 	{
@@ -88,27 +89,22 @@ int	key_hook(int keycode, t_data *data)
 
 int	mouse_hook(int button, int x, int y, t_data *data)
 {
-	printf("zoom = %lf\n", data->x_max - data->x_min);
-	double zoom_factor;
+	double	zoom;
+
+	zoom = data->x_max - data->x_min;
 	if (button == 4 && x >= 0 && y >= 0)
 	{
-		if ((data->x_max - data->x_min) <= data->min_zoom)
+		if (zoom <= data->min_zoom)
 			ft_put_error("Max zoom lvl\n");
 		else
-		{
-			zoom_factor = 0.9;
-			xy_lim_zoom(data, zoom_factor, x, y);
-		}
+			xy_lim_zoom(data, 0.9, x, y);
 	}
 	else if (button == 5 && y >= 0 && x >= 0)
-	{				
-		if ((data->x_max - data->x_min) >= data->max_zoom)
+	{
+		if (zoom >= data->max_zoom)
 			ft_put_error("Min zoom lvl\n");
 		else
-		{
-			zoom_factor = 1.1;
-			xy_lim_zoom(data, zoom_factor, x, y);
-		}
+			xy_lim_zoom(data, 1.1, x, y);
 	}
 	draw_if(data);
 	return (0);

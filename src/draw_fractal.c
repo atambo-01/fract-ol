@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:17:59 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 14:31:55 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 22:26:45 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	draw_mandelbrot(t_data *data, double x, double y, t_cmplx z)
 	get_color_1 (data, data->x_c, data->y_c, iterations);
 }
 
-void	draw_fractal(t_data *data, double x, double y)
+void	draw_init(t_data *data)
 {
 	data->x_step = ((data->x_max - data->x_min) / WIDTH);
 	data->y_step = ((data->y_max - data->y_min) / HEIGHT);
@@ -76,6 +76,11 @@ void	draw_fractal(t_data *data, double x, double y)
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->addr = mlx_get_data_addr(data->img, &data->bpp,
 			&data->line_len, &data->endian);
+}
+
+void	draw_fractal(t_data *data, double x, double y)
+{
+	draw_init(data);
 	data->x_c = 0;
 	x = data->x_min;
 	while (x <= data->x_max)
@@ -97,5 +102,3 @@ void	draw_fractal(t_data *data, double x, double y)
 		x += data->y_step;
 	}
 }
-
-
