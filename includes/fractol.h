@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 16:55:36 by atambo            #+#    #+#             */
-/*   Updated: 2024/09/29 16:55:39 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 10:08:10 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 # define FRACTOL_H
 
 # include "../minilibx-linux/mlx.h"
+# include "../ft_printf/includes/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
-# define ESC	65307
-# define SPACE	32
-# define UP	65363
-# define DOWN	65361
-# define LEFT	65362
-# define RIGHT	65364
-# define S	115
-# define L	108
-# define D	100
+
+# define ESC		65307
+# define SPACE		32
+# define UP			65363
+# define DOWN		65361
+# define LEFT		65362
+# define RIGHT		65364
+# define S			115
+# define L			108
+# define D			100
 # define DBL_MAX	1.7976931348623157e+308
 # define DBL_MIN	2.2250738585072014e-308
+# define WIDTH		1000
+# define HEIGHT		1000
 
 typedef struct s_cmplx
 {
@@ -65,6 +69,7 @@ typedef struct s_data
 	char	view;
 	int		dist;
 }	t_data;
+
 //check_inputs.c
 void	print_valid_params(void);
 int		ft_isdigit(char c);
@@ -72,10 +77,8 @@ int		ft_is_double(const char *str);
 int		check_input_2(char **av);
 int		check_input(int ac, char **av);
 //color.c
-int		get_color_component(int base_color, int next_color, double ratio,
-			int i);
-int		get_color_2(int out_color, int int_color,
-			int iterations, int max_iterations);
+int		get_color_component(int base_color, int next_color, double ratio, int i);
+int		get_color_2(int out_color, int int_color, int iterations, int max_iterations);
 void	update_colors(t_data *data, int iterations);
 void	get_color_1(t_data *data, int x_c, int y_c, int iterations);
 //cmplx.c
@@ -98,7 +101,7 @@ void	key_hook_2(int keycode, t_data *data);
 int		key_hook(int keycode, t_data *data);
 int		mouse_hook(int button, int x, int y, t_data *data);
 //input_utils.c
-void	xy_lim_zoom(t_data *data, double m);
+void 	xy_lim_zoom(t_data *data, double zoom_factor, int mouse_x, int mouse_y);
 void	xy_lim_add(t_data *data, double dx, double dy);
 int		close_window(t_data *data);
 //utils.c

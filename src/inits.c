@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:27:38 by atambo            #+#    #+#             */
-/*   Updated: 2024/09/28 15:27:39 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 01:05:35 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_data	*data_init_3(t_data *data)
 	data->color_0 = 0;
 	data->color_1 = 0x0f548c;
 	data->color_2 = 0xf2cf1d;
-	data->img = mlx_new_image(data->mlx, 1000, 1000);
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->addr = mlx_get_data_addr(data->img, &data->bpp,
 			&data->line_len, &data->endian);
 	return (data);
@@ -67,7 +67,7 @@ t_data	*data_init(void)
 		free(data);
 		exit(1);
 	}
-	data->win = mlx_new_window(data->mlx, 1000, 1000, "fract-ol");
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "fract-ol");
 	if (!data->win)
 	{
 		mlx_destroy_display(data->mlx);

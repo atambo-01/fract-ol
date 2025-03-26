@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:44:13 by atambo            #+#    #+#             */
-/*   Updated: 2024/09/28 15:44:15 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 09:57:37 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,23 +73,27 @@ int	key_hook(int keycode, t_data *data)
 }
 
 int	mouse_hook(int button, int x, int y, t_data *data)
-{	
-	if (button == 4 && x)
+{
+	double zoom_factor;
+	ft_printf("\tmouse_ = %d\n\tmouse_y = %d\n", x, y);
+	if (button == 4 && x >= 0 && y >= 0)
 	{
 		if (data->x_max - data->x_min <= DBL_MIN)
 			ft_put_error("Max zoom lvl\n");
 		else
 		{
-			xy_lim_zoom(data, 0.1 * (data->x_max - data->x_min));
+			zoom_factor = 0.9;
+			xy_lim_zoom(data, zoom_factor, x, y);
 		}
 	}
-	else if (button == 5 && y)
+	else if (button == 5 && y >= 0 && x >= 0)
 	{				
 		if (data->x_max - data->x_min >= DBL_MAX)
 			ft_put_error("Min zoom lvl\n");
 		else
 		{
-			xy_lim_zoom(data, -0.1 * (data->x_max - data->x_min));
+			zoom_factor = 1.1;
+			xy_lim_zoom(data, zoom_factor, x, y);
 		}
 	}
 	draw_if(data);
