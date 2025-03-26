@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:27:38 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 14:48:32 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 18:05:35 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_data	*data_init_2(t_data *data, char **av)
 	{
 		data->fractal = 's';
 		data->max_zoom = 2871.807116;
+		data->min_zoom = 0.000874; 
 	}
 	return (data_init_3(data));
 }

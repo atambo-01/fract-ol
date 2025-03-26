@@ -6,7 +6,7 @@
 /*   By: atambo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:44:13 by atambo            #+#    #+#             */
-/*   Updated: 2025/03/26 14:50:18 by atambo           ###   ########.fr       */
+/*   Updated: 2025/03/26 18:00:40 by atambo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	key_hook(int keycode, t_data *data)
 
 int	mouse_hook(int button, int x, int y, t_data *data)
 {
+	printf("zoom = %lf\n", data->x_max - data->x_min);
 	double zoom_factor;
 	if (button == 4 && x >= 0 && y >= 0)
 	{
